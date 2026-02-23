@@ -1,9 +1,6 @@
 import Hero from "./components/Hero";
 import GeneralInfo from "./components/GeneralInfo";
-import Kitchen from "./components/Kitchen";
-import Bathroom from "./components/Bathroom";
-import Bedroom from "./components/Bedroom";
-import Garden from "./components/Garden";
+import ApartmentDetails from "./components/ApartmentDetails";
 import Gallery from "./components/Gallery";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
@@ -13,19 +10,18 @@ import AccessibilityMenu from "./components/AccessibilityMenu";
 
 export default function Home() {
   return (
-    <main>
-      <AccessibilityMenu />
-      <Hero />
-      <GeneralInfo />
-      <Kitchen />
-      <Bathroom />
-      <Bedroom />
-      <Garden />
-      <Gallery />
-      <FAQ />
-      <Contact />
+    <>
+      <main>
+        <Hero />
+        <GeneralInfo />
+        <ApartmentDetails />
+        <Gallery />
+        <FAQ />
+        <Contact />
+      </main>
       <Footer />
       <WhatsAppButton />
-    </main>
+      <AccessibilityMenu />
+    </>
   );
 }

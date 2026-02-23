@@ -1,49 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1F2124;
-  --color-accent: #25D366;
-  --color-accent-dark: #128C7E;
-  --color-gold: #D4A853;
-  --color-gold-light: #E8C97A;
-}
-
-@font-face {
-  font-family: 'Heebo';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/heebo/v26/NGS6v5_NC0k9P9H0TbFhsqMA.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Heebo';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/heebo/v26/NGS6v5_NC0k9P9H0TbFhsqMA.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Heebo';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/heebo/v26/NGS6v5_NC0k9P9H0TbFhsqMA.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Heebo';
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/heebo/v26/NGS6v5_NC0k9P9H0TbFhsqMA.woff2) format('woff2');
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  --color-primary: #2D5A27;
+  --color-primary-dark: #1E3D1A;
+  --color-accent: #D4A853;
+  --color-accent-light: #E8C97A;
 }
 
 html {
@@ -51,81 +12,49 @@ html {
 }
 
 body {
-  font-family: 'Heebo', sans-serif;
   direction: rtl;
-  background-color: #0a0a0a;
-  color: #fff;
-  overflow-x: hidden;
 }
 
-/* Scroll animations */
-.fade-up {
+/* Fade animation */
+.fade-in {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-.fade-up.visible {
+.fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Glass morphism */
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #D4A853, #E8C97A, #D4A853);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Lightbox */
-.lightbox-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* FAQ Accordion */
+/* Accordion animation */
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+  transition: max-height 0.4s ease-out, padding 0.3s ease-out;
 }
 
 .accordion-content.open {
   max-height: 500px;
 }
 
-/* Accessibility overrides */
-.a11y-high-contrast {
-  filter: contrast(1.5);
+/* WhatsApp pulse */
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+  }
 }
 
-.a11y-high-contrast * {
-  border-color: #fff !important;
+.pulse-green {
+  animation: pulse-green 2s infinite;
+}
+
+/* Accessibility modes */
+.a11y-high-contrast {
+  filter: contrast(1.5);
 }
 
 .a11y-grayscale {
@@ -137,8 +66,7 @@ body {
 }
 
 .a11y-highlight-links a {
-  text-decoration: underline !important;
-  outline: 2px solid #ffd700 !important;
+  outline: 3px solid #FFD700 !important;
   outline-offset: 2px;
 }
 
@@ -148,25 +76,25 @@ body {
   transition: none !important;
 }
 
-.a11y-stop-animations .fade-up {
+.a11y-stop-animations .fade-in {
   opacity: 1 !important;
   transform: none !important;
 }
 
-/* Scrollbar */
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #444;
+  background: #2D5A27;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #666;
+  background: #1E3D1A;
 }

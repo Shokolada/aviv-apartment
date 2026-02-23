@@ -1,55 +1,43 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 export default function AccessibilityMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [fontSize, setFontSize] = useState(0);
   const [highContrast, setHighContrast] = useState(false);
   const [grayscale, setGrayscale] = useState(false);
   const [highlightLinks, setHighlightLinks] = useState(false);
   const [stopAnimations, setStopAnimations] = useState(false);
 
-  const applyStyles = useCallback(() => {
-    const html = document.documentElement;
-
-    // Font size
-    html.style.fontSize = fontSize === 0 ? "" : `${100 + fontSize * 15}%`;
-
-    // High contrast
-    if (highContrast) {
-      html.classList.add("a11y-high-contrast");
-    } else {
-      html.classList.remove("a11y-high-contrast");
-    }
-
-    // Grayscale
-    if (grayscale) {
-      html.classList.add("a11y-grayscale");
-    } else {
-      html.classList.remove("a11y-grayscale");
-    }
-
-    // Highlight links
-    if (highlightLinks) {
-      html.classList.add("a11y-highlight-links");
-    } else {
-      html.classList.remove("a11y-highlight-links");
-    }
-
-    // Stop animations
-    if (stopAnimations) {
-      html.classList.add("a11y-stop-animations");
-    } else {
-      html.classList.remove("a11y-stop-animations");
-    }
-  }, [fontSize, highContrast, grayscale, highlightLinks, stopAnimations]);
+  useEffect(() => {
+    document.documentElement.style.fontSize =
+      fontSize === 0 ? "" : `${16 + fontSize * 2}px`;
+  }, [fontSize]);
 
   useEffect(() => {
-    applyStyles();
-  }, [applyStyles]);
+    document.documentElement.classList.toggle("a11y-high-contrast", highContrast);
+  }, [highContrast]);
 
-  const resetAll = () => {
+  useEffect(() => {
+    document.documentElement.classList.toggle("a11y-grayscale", grayscale);
+  }, [grayscale]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle(
+      "a11y-highlight-links",
+      highlightLinks
+    );
+  }, [highlightLinks]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle(
+      "a11y-stop-animations",
+      stopAnimations
+    );
+  }, [stopAnimations]);
+
+  const reset = () => {
     setFontSize(0);
     setHighContrast(false);
     setGrayscale(false);
@@ -61,52 +49,42 @@ export default function AccessibilityMenu() {
     <>
       {/* Toggle button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 start-4 z-[60] w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center shadow-lg transition-colors"
+        onClick={() => setOpen(!open)}
+        className="fixed top-4 left-4 z-[60] bg-blue-700 hover:bg-blue-800 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-colors"
         aria-label="תפריט נגישות"
         title="נגישות"
       >
         <svg
-          className="w-6 h-6 text-white"
+          className="w-6 h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <circle cx="12" cy="4.5" r="2.5" fill="currentColor" stroke="none" />
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M12 7.5v4m0 0l-3.5 5.5m3.5-5.5l3.5 5.5M5.5 9.5h13"
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
           />
         </svg>
       </button>
 
       {/* Panel */}
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/50 z-[60]"
-            onClick={() => setIsOpen(false)}
-          />
-
-          {/* Menu */}
-          <div
-            className="fixed top-0 start-0 h-full w-80 max-w-[90vw] bg-[#1a1a1a] z-[70] overflow-y-auto shadow-2xl"
-            role="dialog"
-            aria-label="תפריט נגישות"
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-white/10">
-              <h2 className="text-xl font-bold text-white">נגישות</h2>
+      {open && (
+        <div
+          className="fixed top-0 left-0 z-[70] w-80 h-full bg-[#1a1a1a] shadow-2xl overflow-y-auto"
+          dir="rtl"
+        >
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-white">הגדרות נגישות</h2>
               <button
-                onClick={() => setIsOpen(false)}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                onClick={() => setOpen(false)}
+                className="text-white/40 hover:text-white/70"
                 aria-label="סגור תפריט נגישות"
               >
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-6 h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -121,118 +99,91 @@ export default function AccessibilityMenu() {
               </button>
             </div>
 
-            <div className="p-5 space-y-5">
+            <div className="space-y-4">
               {/* Font size */}
               <div>
-                <label className="text-white/70 text-sm mb-3 block">
-                  גודל טקסט
-                </label>
-                <div className="flex items-center gap-3">
+                <p className="font-semibold mb-2 text-white/80">גודל גופן</p>
+                <div className="flex gap-2">
                   <button
-                    onClick={() => setFontSize(Math.max(-2, fontSize - 1))}
-                    className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xl font-bold transition-colors"
-                    aria-label="הקטן טקסט"
+                    onClick={() => setFontSize(Math.max(-3, fontSize - 1))}
+                    className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 text-lg font-bold text-white"
                   >
                     א-
                   </button>
-                  <div className="flex-1 text-center text-white/50 text-sm">
-                    {fontSize === 0 ? "רגיל" : `${fontSize > 0 ? "+" : ""}${fontSize * 15}%`}
-                  </div>
                   <button
-                    onClick={() => setFontSize(Math.min(4, fontSize + 1))}
-                    className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xl font-bold transition-colors"
-                    aria-label="הגדל טקסט"
+                    onClick={() => setFontSize(0)}
+                    className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 text-white"
+                  >
+                    רגיל
+                  </button>
+                  <button
+                    onClick={() => setFontSize(Math.min(5, fontSize + 1))}
+                    className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 text-lg font-bold text-white"
                   >
                     א+
                   </button>
                 </div>
               </div>
 
-              {/* Toggle options */}
-              <ToggleOption
-                label="ניגודיות גבוהה"
-                description="הגברת ניגודיות צבעים"
-                active={highContrast}
-                onToggle={() => setHighContrast(!highContrast)}
-              />
+              {/* High contrast */}
+              <button
+                onClick={() => setHighContrast(!highContrast)}
+                className={`w-full text-right px-4 py-3 rounded-lg border transition-colors ${
+                  highContrast
+                    ? "bg-blue-700 text-white border-blue-700"
+                    : "bg-white/5 border-white/10 text-white/80 hover:bg-white/10"
+                }`}
+              >
+                ניגודיות גבוהה
+              </button>
 
-              <ToggleOption
-                label="גווני אפור"
-                description="הצגת האתר בשחור-לבן"
-                active={grayscale}
-                onToggle={() => setGrayscale(!grayscale)}
-              />
+              {/* Grayscale */}
+              <button
+                onClick={() => setGrayscale(!grayscale)}
+                className={`w-full text-right px-4 py-3 rounded-lg border transition-colors ${
+                  grayscale
+                    ? "bg-blue-700 text-white border-blue-700"
+                    : "bg-white/5 border-white/10 text-white/80 hover:bg-white/10"
+                }`}
+              >
+                גווני אפור
+              </button>
 
-              <ToggleOption
-                label="הדגשת קישורים"
-                description="סימון וקו תחתון לכל הקישורים"
-                active={highlightLinks}
-                onToggle={() => setHighlightLinks(!highlightLinks)}
-              />
+              {/* Highlight links */}
+              <button
+                onClick={() => setHighlightLinks(!highlightLinks)}
+                className={`w-full text-right px-4 py-3 rounded-lg border transition-colors ${
+                  highlightLinks
+                    ? "bg-blue-700 text-white border-blue-700"
+                    : "bg-white/5 border-white/10 text-white/80 hover:bg-white/10"
+                }`}
+              >
+                הדגשת קישורים
+              </button>
 
-              <ToggleOption
-                label="עצירת אנימציות"
-                description="ביטול כל התנועות והאנימציות"
-                active={stopAnimations}
-                onToggle={() => setStopAnimations(!stopAnimations)}
-              />
+              {/* Stop animations */}
+              <button
+                onClick={() => setStopAnimations(!stopAnimations)}
+                className={`w-full text-right px-4 py-3 rounded-lg border transition-colors ${
+                  stopAnimations
+                    ? "bg-blue-700 text-white border-blue-700"
+                    : "bg-white/5 border-white/10 text-white/80 hover:bg-white/10"
+                }`}
+              >
+                עצירת אנימציות
+              </button>
 
               {/* Reset */}
               <button
-                onClick={resetAll}
-                className="w-full py-3 rounded-xl border border-white/20 text-white/60 hover:bg-white/10 hover:text-white transition-colors text-sm"
+                onClick={reset}
+                className="w-full px-4 py-3 bg-red-900/30 text-red-400 rounded-lg border border-red-800/50 hover:bg-red-900/50 transition-colors font-semibold"
               >
                 איפוס הגדרות
               </button>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
-  );
-}
-
-function ToggleOption({
-  label,
-  description,
-  active,
-  onToggle,
-}: {
-  label: string;
-  description: string;
-  active: boolean;
-  onToggle: () => void;
-}) {
-  return (
-    <button
-      onClick={onToggle}
-      className={`w-full text-start p-4 rounded-xl transition-colors ${
-        active
-          ? "bg-blue-600/20 border border-blue-500/40"
-          : "bg-white/5 border border-white/10 hover:bg-white/10"
-      }`}
-      role="switch"
-      aria-checked={active}
-    >
-      <div className="flex items-center justify-between">
-        <div>
-          <div className={`font-bold ${active ? "text-blue-400" : "text-white/80"}`}>
-            {label}
-          </div>
-          <div className="text-white/40 text-sm mt-1">{description}</div>
-        </div>
-        <div
-          className={`w-11 h-6 rounded-full relative transition-colors ${
-            active ? "bg-blue-600" : "bg-white/20"
-          }`}
-        >
-          <div
-            className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all ${
-              active ? "start-[1.375rem]" : "start-0.5"
-            }`}
-          />
-        </div>
-      </div>
-    </button>
   );
 }

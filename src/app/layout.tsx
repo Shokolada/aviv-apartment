@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
+import { Heebo } from "next/font/google";
 import "./globals.css";
 
+const heebo = Heebo({
+  subsets: ["hebrew", "latin"],
+  variable: "--font-heebo",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "יחידת דיור אביב | דירת גן להשכרה בצופים",
+  title: "דירת גן להשכרה בצופים | יחידת דיור אביב",
   description:
-    "דירת גן מושקעת, מרוהטת ויפיפייה להשכרה ביישוב צופים. 40 מ״ר, 2 חדרים, גינה מטופחת. 3,000 ₪ לחודש.",
-  keywords: "דירה להשכרה, צופים, יחידת דיור, דירת גן, שכירות",
+    "דירת גן מושקעת, מרוהטת ויפיפייה להשכרה ביישוב צופים. 3,000 ₪ לחודש. חדר שינה, מטבח מעוצב, מקלחת יוקרתית וגינה מטופחת.",
+  keywords: ["דירה להשכרה", "צופים", "דירת גן", "השכרה", "יחידת דיור"],
   openGraph: {
-    title: "יחידת דיור אביב | דירת גן להשכרה בצופים",
+    title: "דירת גן להשכרה בצופים | יחידת דיור אביב",
     description:
-      "דירת גן מושקעת, מרוהטת ויפיפייה להשכרה ביישוב צופים. 40 מ״ר, 2 חדרים, גינה מטופחת.",
-    type: "website",
+      "לגור בצימר בתוך השקט הירוק - דירת גן מושקעת להשכרה ביישוב צופים",
     locale: "he_IL",
+    type: "website",
   },
 };
 
@@ -21,20 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="he" dir="rtl">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="font-[Heebo] antialiased">{children}</body>
+    <html lang="he" dir="rtl" className={heebo.variable}>
+      <body className="font-[var(--font-heebo)] bg-white text-gray-800 antialiased">
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,133 +1,90 @@
 "use client";
 
-import ScrollReveal from "./ScrollReveal";
+import { useEffect, useRef } from "react";
 
-const specs = [
+const details = [
   { icon: "📐", label: "גודל", value: '40 מ"ר' },
-  { icon: "🚪", label: "חדרים", value: "2 חדרים" },
+  { icon: "🛏️", label: "חדרים", value: "2 (סלון + חדר שינה)" },
   { icon: "👤", label: "מתאימה ל", value: "יחיד/ה" },
-  { icon: "📶", label: "אינטרנט", value: "WIFI" },
-];
-
-const rooms = [
-  "סלון",
-  "מטבח",
-  "חדר שינה",
-  "גינה מטופחת עם דשא",
-  "פינת תבלינים",
-  "מסלעה משולבת בצבעונים וסיגליות",
-];
-
-const appliances = [
-  "מכונת כביסה",
-  "תנור אפיה בילד אין",
-  "כיריים חשמליים",
-  "דוד חשמל",
-  "מזגן",
-  "מקרר",
-];
-
-const furniture = [
-  "בר עץ מלא + 2 כסאות בר",
-  "ספה",
-  "ארון מרווח",
+  { icon: "🪑", label: "ריהוט", value: "מרוהטת קומפלט" },
+  { icon: "📶", label: "אינטרנט", value: "WiFi" },
+  { icon: "❄️", label: "מיזוג", value: "מזגן" },
 ];
 
 export default function GeneralInfo() {
-  return (
-    <section id="general-info" className="py-20 px-6 bg-[#0d0d0d]">
-      <div className="max-w-5xl mx-auto">
-        <ScrollReveal>
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">
-            מידע כללי
-          </h2>
-        </ScrollReveal>
+  const sectionRef = useRef<HTMLElement>(null);
 
-        <ScrollReveal delay={100}>
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <p className="text-white/70 text-lg leading-relaxed mb-4">
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.1 }
+    );
+    const elements = sectionRef.current?.querySelectorAll(".fade-in");
+    elements?.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="info" ref={sectionRef} className="py-20 px-4 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="fade-in text-3xl md:text-4xl font-bold text-center mb-4 text-[var(--color-primary-dark)]">
+          מידע כללי
+        </h2>
+        <div className="fade-in w-16 h-1 bg-[var(--color-accent)] mx-auto mb-12 rounded-full" />
+
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="fade-in">
+            <h3 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">
+              הסיפור שלנו
+            </h3>
+            <p className="text-gray-600 leading-relaxed text-lg">
               אחרי שנים של מגורים בשכירות ולאחר שנתקלו בכל מיני דירות מוזרות,
-              בלי שום מחשבה על השוכר ולעיתים רק כדי לייצר הכנסה בלי מאמץ.
-            </p>
-            <p className="text-white/90 text-xl font-bold mb-4">
+              בלי שום מחשבה על השוכר ולעיתים רק כדי לייצר הכנסה בלי מאמץ -
               החלטנו שאצלנו זה יהיה אחרת.
             </p>
-            <p className="text-white/70 text-lg leading-relaxed">
+            <p className="text-gray-600 leading-relaxed text-lg mt-4">
               את הדירה תכננו מתוך מחשבה שככה היינו רוצים לחיות בדיוק.
-              לא חסכנו בכלום, לא בעיצוב, לא בחומרים ולא באביזרים.
+              לא חסכנו בכלום - לא בעיצוב, לא בחומרים ולא באביזרים.
               הכל נעשה באהבה גדולה ומתוך מחשבה.
             </p>
-          </div>
-        </ScrollReveal>
-
-        {/* Specs grid */}
-        <ScrollReveal delay={200}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            {specs.map((spec) => (
-              <div
-                key={spec.label}
-                className="glass rounded-xl p-6 text-center hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="text-3xl mb-2">{spec.icon}</div>
-                <div className="text-white/50 text-sm mb-1">{spec.label}</div>
-                <div className="text-white font-bold text-lg">{spec.value}</div>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-
-        {/* Details grid */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <ScrollReveal delay={300}>
-            <div className="glass rounded-xl p-6">
-              <h3 className="text-xl font-bold text-[var(--color-gold)] mb-4">
-                חדרים ואזורים
-              </h3>
-              <ul className="space-y-2">
-                {rooms.map((room) => (
-                  <li key={room} className="flex items-start gap-2 text-white/70">
-                    <span className="text-[var(--color-gold)] mt-1">&#9679;</span>
-                    {room}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={400}>
-            <div className="glass rounded-xl p-6">
-              <h3 className="text-xl font-bold text-[var(--color-gold)] mb-4">
-                מכשירי חשמל
-              </h3>
-              <ul className="space-y-2">
-                {appliances.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-white/70">
-                    <span className="text-[var(--color-gold)] mt-1">&#9679;</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={500}>
-            <div className="glass rounded-xl p-6">
-              <h3 className="text-xl font-bold text-[var(--color-gold)] mb-4">
-                ריהוט
-              </h3>
-              <ul className="space-y-2">
-                {furniture.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-white/70">
-                    <span className="text-[var(--color-gold)] mt-1">&#9679;</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-white/50 text-sm mt-4">
-                הדירה מרוהטת קומפלט
+            <div className="mt-6 p-4 bg-green-50 border-r-4 border-[var(--color-primary)] rounded-lg">
+              <p className="text-[var(--color-primary-dark)] font-semibold">
+                המחיר כולל: דירה מרוהטת קומפלט
+              </p>
+              <p className="text-gray-600 text-sm mt-1">
+                לא כולל: חשמל לפי קריאה (מונה נפרד), מס שמירה יישובי 120 &#8362; בחודש
               </p>
             </div>
-          </ScrollReveal>
+          </div>
+
+          <div className="fade-in">
+            <h3 className="text-2xl font-bold mb-6 text-[var(--color-primary)]">
+              פרטי הדירה
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              {details.map((item) => (
+                <div
+                  key={item.label}
+                  className="bg-gray-50 rounded-xl p-4 hover:shadow-md transition-shadow"
+                >
+                  <div className="text-2xl mb-2">{item.icon}</div>
+                  <div className="text-sm text-gray-500">{item.label}</div>
+                  <div className="font-semibold text-gray-800">{item.value}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 bg-gray-50 rounded-xl p-4">
+              <div className="text-sm text-gray-500 mb-1">כולל</div>
+              <p className="text-gray-700">
+                סלון, מטבח וחדר שינה, גינה מטופחת עם דשא, פינת תבלינים ומסלעה.
+                מכונת כביסה, תנור אפיה בילד אין, כיריים חשמליים, מקרר, דוד חשמל.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
