@@ -4,18 +4,18 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 
 const images = [
-  { src: "/images/gallery-1.jpg", alt: "מבט מהדירה" },
-  { src: "/images/bathroom-1.jpg", alt: "המקלחת" },
-  { src: "/images/gallery-2.jpg", alt: "הדירה מבפנים" },
-  { src: "/images/gallery-3.jpg", alt: "המטבח" },
-  { src: "/images/gallery-4.jpg", alt: "פינת האוכל" },
-  { src: "/images/gallery-5.jpg", alt: "חדר השינה" },
-  { src: "/images/gallery-6.jpg", alt: "פרטים מהדירה" },
-  { src: "/images/gallery-7.jpg", alt: "הגינה" },
-  { src: "/images/gallery-8.jpg", alt: "מבט מבחוץ" },
-  { src: "/images/exterior-1.jpg", alt: "הנוף ביישוב" },
-  { src: "/images/exterior-2.jpg", alt: "שביל הכניסה" },
-  { src: "/images/exterior-3.jpg", alt: "מבט על הירוק" },
+  { src: "/images/gallery-8.jpg", alt: "הסלון" },
+  { src: "/images/exterior-1.jpg", alt: "המטבח" },
+  { src: "/images/exterior-2.jpg", alt: "הבר והסלון" },
+  { src: "/images/gallery-1.jpg", alt: "חדר השינה" },
+  { src: "/images/gallery-2.jpg", alt: "חדר השינה - זווית נוספת" },
+  { src: "/images/bathroom-1.jpg", alt: "חדר השינה - פינת עבודה" },
+  { src: "/images/gallery-6.jpg", alt: "מבט מהחלון לגינה" },
+  { src: "/images/gallery-3.jpg", alt: "מסלעה בגינה" },
+  { src: "/images/gallery-4.jpg", alt: "שביל הגינה" },
+  { src: "/images/exterior-3.jpg", alt: "שביל הגינה עם פרחים" },
+  { src: "/images/gallery-5.jpg", alt: "פרחים בגינה" },
+  { src: "/images/gallery-7.jpg", alt: "נוף היישוב בשקיעה" },
 ];
 
 export default function Gallery() {
