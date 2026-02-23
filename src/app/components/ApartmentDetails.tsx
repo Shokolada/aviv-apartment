@@ -49,7 +49,7 @@ const rooms = [
     id: "garden",
     title: "הגינה",
     icon: "🌿",
-    image: "/images/exterior-4.jpg",
+    image: "/images/exterior-3.jpg",
     features: [
       "שביל חוויתי מלא בסיגליות ואבני מדרך טבעיות",
       "מעקה עץ עם חבלי ים – עבודת אמן",
