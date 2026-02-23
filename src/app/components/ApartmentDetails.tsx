@@ -8,7 +8,7 @@ const rooms = [
     id: "kitchen",
     title: "המטבח",
     icon: "🍳",
-    image: "/images/kitchen-1.jpg",
+    image: "/images/kitchen-2.jpg",
     features: [
       "דלתות בצביעה בתנור, טריקה שקטה",
       "משטח עבודה מעץ מלא",
@@ -24,7 +24,7 @@ const rooms = [
     id: "shower",
     title: "המקלחת",
     icon: "🚿",
-    image: "/images/bathroom-1.jpg",
+    image: "/images/exterior-5.jpg",
     features: [
       "ארון אמבטיה מעץ – עבודת נגר",
       "ברז מעוצב",
@@ -37,7 +37,7 @@ const rooms = [
     id: "bedroom",
     title: "חדר השינה",
     icon: "🛏️",
-    image: "/images/bedroom-1.jpg",
+    image: "/images/gallery-1.jpg",
     features: [
       "חדר שינה מרווח מאוד עם חלון לכיוון הנגדי",
       "פינת עבודה",
