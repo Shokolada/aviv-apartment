@@ -35,7 +35,7 @@ export default function Hero() {
           <span className="text-4xl md:text-5xl font-bold gradient-text">
             3,000 ₪
           </span>
-          <span className="text-white/60 text-lg mr-2">לחודש</span>
+          <span className="text-white/60 text-lg ms-2">לחודש</span>
         </div>
 
         <p className="text-sm text-white/40">
@@ -43,7 +43,7 @@ export default function Hero() {
         </p>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-8 start-1/2 -translate-x-1/2 animate-bounce">
           <svg
             className="w-8 h-8 text-white/40"
             fill="none"

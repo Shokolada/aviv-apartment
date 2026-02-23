@@ -113,7 +113,7 @@ export default function Gallery() {
           {/* Close button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 left-4 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            className="absolute top-4 start-4 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
             aria-label="סגור"
           >
             <svg
@@ -137,7 +137,7 @@ export default function Gallery() {
               e.stopPropagation();
               goPrev();
             }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            className="absolute end-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
             aria-label="תמונה קודמת"
           >
             <svg
@@ -161,7 +161,7 @@ export default function Gallery() {
               e.stopPropagation();
               goNext();
             }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            className="absolute start-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
             aria-label="תמונה הבאה"
           >
             <svg
@@ -195,7 +195,7 @@ export default function Gallery() {
           </div>
 
           {/* Counter */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm">
+          <div className="absolute bottom-4 start-1/2 -translate-x-1/2 text-white/60 text-sm">
             {lightbox + 1} / {images.length}
           </div>
         </div>

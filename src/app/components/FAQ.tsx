@@ -70,7 +70,7 @@ export default function FAQ() {
                     {faq.q}
                   </span>
                   <svg
-                    className={`w-5 h-5 text-[var(--color-gold)] shrink-0 mr-4 transition-transform duration-300 ${
+                    className={`w-5 h-5 text-[var(--color-gold)] shrink-0 ms-4 transition-transform duration-300 ${
                       openIndex === i ? "rotate-180" : ""
                     }`}
                     fill="none"

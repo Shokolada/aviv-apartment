@@ -123,7 +123,7 @@ export default function Contact() {
               <div>
                 <div className="text-white font-bold">נווטו אלינו עם Waze</div>
                 <div className="text-white/50 text-sm">
-                  ערבי נחל 172, צופים
+                  ערבי נחל 39, צופים
                 </div>
               </div>
             </a>
@@ -134,14 +134,14 @@ export default function Contact() {
         <ScrollReveal>
           <div className="rounded-2xl overflow-hidden border border-white/10">
             <iframe
-              src="https://maps.google.com/maps?q=%D7%A2%D7%A8%D7%91%D7%99%20%D7%A0%D7%97%D7%9C%20172%2C%20%D7%A6%D7%95%D7%A4%D7%99%D7%9D&t=m&z=14&output=embed&iwloc=near"
+              src="https://maps.google.com/maps?q=%D7%A2%D7%A8%D7%91%D7%99%20%D7%A0%D7%97%D7%9C%2039%2C%20%D7%A6%D7%95%D7%A4%D7%99%D7%9D&t=m&z=14&output=embed&iwloc=near"
               width="100%"
               height="350"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="מפה - ערבי נחל 172, צופים"
+              title="מפה - ערבי נחל 39, צופים"
             />
           </div>
         </ScrollReveal>

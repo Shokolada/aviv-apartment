@@ -19,7 +19,7 @@ export default function WhatsAppButton() {
       href="https://api.whatsapp.com/send?phone=972549444248"
       target="_blank"
       rel="noopener noreferrer"
-      className={`fixed bottom-6 left-6 z-50 w-16 h-16 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg shadow-[#25D366]/30 hover:scale-110 transition-all duration-300 ${
+      className={`fixed bottom-6 start-6 z-50 w-16 h-16 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg shadow-[#25D366]/30 hover:scale-110 transition-all duration-300 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
       aria-label="שלחו הודעה בWhatsApp"
