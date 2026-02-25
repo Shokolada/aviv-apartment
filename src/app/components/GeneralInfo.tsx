@@ -7,7 +7,6 @@ const details = [
   { icon: "🛏️", label: "חדרים", value: "2 (סלון + חדר שינה)" },
   { icon: "👤", label: "מתאימה ל", value: "יחיד/ה" },
   { icon: "🪑", label: "ריהוט", value: "מרוהטת קומפלט" },
-  { icon: "📶", label: "אינטרנט", value: "WiFi" },
   { icon: "❄️", label: "מיזוג", value: "מזגן" },
 ];
 
