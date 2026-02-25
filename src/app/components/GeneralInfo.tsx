@@ -80,7 +80,7 @@ export default function GeneralInfo() {
               <div className="text-sm text-gray-500 mb-1">כולל</div>
               <p className="text-gray-700">
                 סלון, מטבח וחדר שינה, גינה מטופחת עם דשא, פינת תבלינים ומסלעה.
-                מכונת כביסה, תנור אפיה בילד אין, כיריים חשמליים, מקרר, דוד חשמל.
+                מכונת כביסה, תנור אפיה בילד אין, מקרר, דוד חשמל.
               </p>
             </div>
           </div>
